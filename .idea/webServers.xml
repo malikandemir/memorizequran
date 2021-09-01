@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="79005f83-e627-4130-918d-609d513a75df" name="memorize.mehmetalikandemir.com" url="http://ftp.mehmetalikandemir.com">
+        <fileTransfer host="ftp.mehmetalikandemir.com" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="77b2a893-866e-4e25-8a5b-34b8dafda507" name="AwsTest" url="http://3.143.13.243">
+        <fileTransfer host="3.143.13.243" port="22" privateKey="D:\Keys\AWS\QpAwsVm.ppk" rootFolder="/home/web" accessType="SFTP" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

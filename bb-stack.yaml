@@ -1,0 +1,7 @@
+version: '3.7'
+
+services:
+  bb-app:
+    image: nginx
+    ports:
+      - "7070:7070"

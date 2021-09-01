@@ -1,0 +1,56 @@
+version: "3.7"
+services:
+  app:
+    build:
+      args:
+        user: sammy
+        uid: 1000
+      context: ./
+      dockerfile: Dockerfile
+    image: laravel8
+    container_name: laravel8-app
+    restart: unless-stopped
+    working_dir: /var/www/
+    volumes:
+      - ./:/var/www
+    networks:
+      - laravel8
+
+  db:
+    image: mysql:8
+    container_name: laravel8-db
+    restart: unless-stopped
+    command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - 33060:3306
+    environment:
+      MYSQL_DATABASE: travellist
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_PASSWORD: password
+      MYSQL_USER: travellist_user
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - ./docker-compose/mysql:/docker-entrypoint-initdb.d
+      - ./docker-compose/mysql/conf:/etc/mysql/
+      - ./docker-compose/mydata:/var/lib/mysql
+      - ./mysql-files:/var/lib/mysql-files
+    networks:
+      - laravel8
+
+  nginx:
+    image: nginx:alpine
+    container_name: laravel8-nginx
+    restart: unless-stopped
+    ports:
+      - 80:80
+      - 443:80
+    volumes:
+      - ./:/var/www
+      - ./docker-compose/nginx:/etc/nginx/conf.d/
+    networks:
+      - laravel8
+
+networks:
+  laravel8:
+    driver: bridge
